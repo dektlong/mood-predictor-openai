@@ -25,10 +25,13 @@ import reactor.netty.http.client.HttpClient;
 
 @Configuration
 public class WebClientConfiguration {
+
+    public static final String DEFAULT_USER_AGENT = "openai";
+
     @Bean
     WebClient.Builder webClientBuilder() {
         return WebClient.builder()
-                .defaultHeader(HttpHeaders.USER_AGENT, "dallecool")
+                .defaultHeader(HttpHeaders.USER_AGENT, DEFAULT_USER_AGENT)
                 .clientConnector(new ReactorClientHttpConnector(HttpClient.create().proxyWithSystemProperties()));
     }
 

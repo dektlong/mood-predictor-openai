@@ -31,3 +31,28 @@ function generateImage(e) {
     });
     return true;
 };
+
+function generateCompletion(e) {
+    console.log("Generating completion");
+    document.getElementById("loading").style.display = "inline";
+    const completionPrompt = document.getElementById("completionPrompt").value;
+    document.getElementById("completion").style.display = "none";
+    document.getElementById("completionPrompt").disabled = true;
+    document.getElementById("completionButton").style.visibility = "hidden";
+    window.getSelection().removeAllRanges();
+    axios.get("/api/v1/completion?prompt=" + completionPrompt)
+        .catch(error => {
+            document.getElementById("completion").style.display = "none";
+        }).then(res => {
+        console.log("Got completion: " + res.data.text);
+        document.getElementById("completion").value = res.data.text;
+        document.getElementById("completion").style.display = "inline";
+    }).finally(() => {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("completionPrompt").disabled = false;
+        document.getElementById("completionButton").style.visibility = "visible";
+        document.getElementById("completionPrompt").focus();
+        document.getElementById("completionPrompt").select();
+    });
+    return true;
+};

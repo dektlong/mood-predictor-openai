@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.vmware.tanzu.demos</groupId>
-    <artifactId>dallecool</artifactId>
+    <artifactId>openai</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>DALL-E Cool</name>
     <description>A Spring Boot app generating images by leveraging DALL-E</description>

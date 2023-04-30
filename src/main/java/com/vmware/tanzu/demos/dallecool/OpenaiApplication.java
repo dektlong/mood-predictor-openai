@@ -18,6 +18,7 @@ package com.vmware.tanzu.demos.dallecool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,12 +27,17 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-public class DallecoolApplication {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DallecoolApplication.class);
+public class OpenaiApplication {
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenaiApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(DallecoolApplication.class, args);
+        SpringApplication.run(OpenaiApplication.class, args);
     }
+
+    @Autowired
+    private CompletionService completionService;
+    @Autowired
+    private DalleImageGeneratorService dalleImageGeneratorService;
 
     @Bean
     CommandLineRunner onStart(OpenAiConfiguration openai) {

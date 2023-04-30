@@ -28,17 +28,25 @@ import java.net.URI;
 
 @RestController
 @ControllerAdvice
-public class DallecoolController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DallecoolController.class);
+public class OpenaiController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenaiController.class);
     private final DalleImageGeneratorService imageGenerator;
 
-    public DallecoolController(DalleImageGeneratorService imageGenerator) {
+    private final CompletionService completionService;
+
+    public OpenaiController(DalleImageGeneratorService imageGenerator, CompletionService completionService) {
         this.imageGenerator = imageGenerator;
+        this.completionService = completionService;
     }
 
     @GetMapping("/api/v1/image")
     Mono<ImageResponse> generateImage(@RequestParam("prompt") String prompt) {
         return imageGenerator.generateImage(prompt).map(resp -> new ImageResponse(prompt, resp));
+    }
+
+    @GetMapping("/api/v1/completion")
+    Mono<CompletionResponse> generateCompletion(@RequestParam("prompt") String prompt) {
+        return completionService.generateCompletion(prompt).map(resp -> new CompletionResponse(prompt, resp));
     }
 
     @ExceptionHandler(WebClientException.class)
@@ -60,5 +68,8 @@ public class DallecoolController {
     }
 
     public record ImageResponse(String prompt, String url) {
+    }
+
+    public record CompletionResponse(String prompt, String text) {
     }
 }
