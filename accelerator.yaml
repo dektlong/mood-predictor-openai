@@ -8,3 +8,43 @@ accelerator:
     - web
     - tanzu
     - openai
+
+engine:
+  chain:
+    - merge:
+        - include: [ "**/*" ]
+          exclude: [ "config/*.yaml", "Tiltfile", "README.md", "catalog/*.yaml", ".github/workflows/**" ]
+        - include: [ "Tiltfile" ]
+          chain:
+            - type: ReplaceText
+              substitutions:
+                - text: openai
+                  with: "#artifactId.toLowerCase()"
+
+        - include: [ "config/*.yaml" ]
+          chain:
+            - type: ReplaceText
+              substitutions:
+                - text: ": openai"
+                  with: "': ' + #artifactId.toLowerCase()"
+            - merge:
+                - type: InvokeFragment
+                  reference: tap-workload
+                - include: [ "**" ]
+              onConflict: UseFirst
+
+        - include: [ "README.md" ]
+          chain:
+            - type: ReplaceText
+              substitutions:
+                - text: openai
+                  with: "#artifactId"
+
+        - include: [ "catalog/*.yaml" ]
+          chain:
+            - type: ReplaceText
+              substitutions:
+                - text: openai
+                  with: "#artifactId"
+
+    - type: Provenance
