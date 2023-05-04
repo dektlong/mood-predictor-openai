@@ -9,6 +9,9 @@ accelerator:
     - tanzu
     - openai
 
+  imports:
+    - name: tap-workload
+
 engine:
   chain:
     - merge:
