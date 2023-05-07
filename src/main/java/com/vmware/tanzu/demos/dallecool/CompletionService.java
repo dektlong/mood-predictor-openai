@@ -16,55 +16,45 @@
 
 package com.vmware.tanzu.demos.dallecool;
 
+import com.theokanning.openai.completion.CompletionChoice;
+import com.theokanning.openai.completion.CompletionRequest;
+import com.theokanning.openai.service.OpenAiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Service
 public class CompletionService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CompletionService.class);
     private final OpenAiConfiguration openai;
-    private final WebClient client;
-    private final String apiEndpoint = "/v1/completions";
 
     public static final String COMPLETION_MODEL = "text-davinci-003";
-    public static final int MAX_TOKENS = 100;
+    public static final int MAX_TOKENS = 1024;
 
-    public CompletionService(OpenAiConfiguration openai, WebClient client) {
+    public CompletionService(OpenAiConfiguration openai) {
         this.openai = openai;
-        this.client = client;
     }
 
-    public Mono<String> generateCompletion(String prompt) {
+    public String generateCompletion(String prompt) {
         if (!StringUtils.hasText(prompt)) {
             throw new IllegalArgumentException("Prompt must not be empty");
         }
-        LOGGER.info("Sending request to OpenAI: {}", prompt);
-        final var req = new CompletionRequest(prompt, COMPLETION_MODEL, MAX_TOKENS);
-        return client.post().uri(openai.api() + apiEndpoint)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + openai.key())
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .bodyValue(req)
-                .retrieve()
-                .bodyToMono(CompletionResponse.class)
-                .doOnSuccess(resp -> {
-                    LOGGER.info("Received response from OpenAI for request: {}", prompt);
-                })
-                .filter(resp -> resp.choices.length > 0)
-                .map(resp -> resp.choices[0].text);
+        OpenAiService service = new OpenAiService(openai.key());
+
+        CompletionRequest completionRequest = CompletionRequest.builder()
+                .prompt(prompt)
+                .model(COMPLETION_MODEL)
+                .maxTokens(MAX_TOKENS)
+                .echo(true)
+                .build();
+        LOGGER.info("Sending request to OpenAI: {}", completionRequest);
+
+        List<CompletionChoice> choices = service.createCompletion(completionRequest).getChoices();
+        LOGGER.info("Received " + choices.size() + " choices");
+        return choices.get(0).getText();
     }
 
-    private record CompletionResponse(CompletionResponseChoice[] choices) {
-    }
-
-    private record CompletionResponseChoice(String text) {
-    }
-
-    private record CompletionRequest(String prompt, String model, int max_tokens) {
-    }
 }

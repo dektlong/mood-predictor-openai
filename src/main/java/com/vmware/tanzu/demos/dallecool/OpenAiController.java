@@ -40,13 +40,15 @@ public class OpenAiController {
     }
 
     @GetMapping("/api/v1/image")
-    Mono<ImageResponse> generateImage(@RequestParam("prompt") String prompt) {
-        return imageGenerator.generateImage(prompt).map(resp -> new ImageResponse(prompt, resp));
+    ImageResponse generateImage(@RequestParam("prompt") String prompt) {
+        String response = imageGenerator.generateImage(prompt);
+        return new ImageResponse(prompt, response);
     }
 
     @GetMapping("/api/v1/completion")
-    Mono<CompletionResponse> generateCompletion(@RequestParam("prompt") String prompt) {
-        return completionService.generateCompletion(prompt).map(resp -> new CompletionResponse(prompt, resp));
+    CompletionResponse generateCompletion(@RequestParam("prompt") String prompt) {
+        String response = completionService.generateCompletion(prompt);
+        return new CompletionResponse(prompt, response);
     }
 
     @ExceptionHandler(WebClientException.class)

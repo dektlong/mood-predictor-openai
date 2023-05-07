@@ -16,52 +16,38 @@
 
 package com.vmware.tanzu.demos.dallecool;
 
+import com.theokanning.openai.image.CreateImageRequest;
+import com.theokanning.openai.image.Image;
+import com.theokanning.openai.service.OpenAiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Service
 public class DalleImageGeneratorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(DalleImageGeneratorService.class);
     private final OpenAiConfiguration openai;
-    private final WebClient client;
-    private final String apiEndpoint = "/v1/images/generations";
 
-    public DalleImageGeneratorService(OpenAiConfiguration openai, WebClient client) {
+    public DalleImageGeneratorService(OpenAiConfiguration openai) {
         this.openai = openai;
-        this.client = client;
     }
 
-    public Mono<String> generateImage(String prompt) {
+    public String generateImage(String prompt) {
         if (!StringUtils.hasText(prompt)) {
             throw new IllegalArgumentException("Prompt must not be empty");
         }
-        LOGGER.info("Sending request to DALL-E: {}", prompt);
-        final var req = new ImageGenerationRequest(prompt);
-        return client.post().uri(openai.api() + apiEndpoint)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + openai.key())
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .bodyValue(req)
-                .retrieve()
-                .bodyToMono(ImageGenerationResponse.class)
-                .doOnSuccess(resp -> {
-                    LOGGER.info("Received response from DALL-E for request: {}", prompt);
-                })
-                .filter(resp -> resp.data.length > 0)
-                .map(resp -> resp.data[0].url);
-    }
+        LOGGER.info("Sending request to OpenAI: {}", prompt);
+        OpenAiService service = new OpenAiService(openai.key());
 
-    private record ImageGenerationResponse(ImageGenerationResponseUrl[] data) {
-    }
+        CreateImageRequest createImageRequest = CreateImageRequest.builder()
+                .prompt(prompt)
+                .build();
 
-    private record ImageGenerationResponseUrl(String url) {
-    }
-
-    private record ImageGenerationRequest(String prompt) {
+        List<Image> choices = service.createImage(createImageRequest).getData();
+        LOGGER.info("Received " + choices.size() + " choices");
+        return choices.get(0).getUrl();
     }
 }

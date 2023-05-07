@@ -13,7 +13,7 @@
     <artifactId>openai</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>OpenAI Client</name>
-    <description>A Spring Boot app generating images by leveraging DALL-E</description>
+    <description>A Spring Boot app leveraging OpenAI</description>
 
     <properties>
         <java.version>17</java.version>
@@ -43,6 +43,11 @@
             <artifactId>spring-cloud-bindings</artifactId>
             <version>1.11.0</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.theokanning.openai-gpt3-java</groupId>
+            <artifactId>service</artifactId>
+            <version>0.12.0</version>
         </dependency>
 
         <dependency>
