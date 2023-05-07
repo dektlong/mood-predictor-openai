@@ -28,13 +28,13 @@ import java.net.URI;
 
 @RestController
 @ControllerAdvice
-public class OpenaiController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OpenaiController.class);
+public class OpenAiController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenAiController.class);
     private final DalleImageGeneratorService imageGenerator;
 
     private final CompletionService completionService;
 
-    public OpenaiController(DalleImageGeneratorService imageGenerator, CompletionService completionService) {
+    public OpenAiController(DalleImageGeneratorService imageGenerator, CompletionService completionService) {
         this.imageGenerator = imageGenerator;
         this.completionService = completionService;
     }

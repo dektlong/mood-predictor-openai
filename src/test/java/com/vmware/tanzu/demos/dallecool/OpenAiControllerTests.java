@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 @AutoConfigureWireMock(port = 0)
-public class OpenaiControllerTests {
+public class OpenAiControllerTests {
     @Autowired
     private TestRestTemplate client;
 
@@ -54,7 +54,7 @@ public class OpenaiControllerTests {
         stubFor(post("/v1/images/generations")
                 .withRequestBody(equalToJson(jsonReq))
                 .willReturn(okJson(jsonResp)));
-        final var resp = client.getForEntity("/api/v1/image?prompt=Hello", OpenaiController.ImageResponse.class);
+        final var resp = client.getForEntity("/api/v1/image?prompt=Hello", OpenAiController.ImageResponse.class);
         assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
         verify(postRequestedFor(urlEqualTo("/v1/images/generations"))
                 .withHeader(HttpHeaders.AUTHORIZATION, equalTo("Bearer changeme"))
