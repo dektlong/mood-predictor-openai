@@ -7,6 +7,7 @@ k8s_custom_deploy(
     apply_cmd="tanzu apps workload apply -f config/workload.yaml --update-strategy replace --debug --live-update" +
                " --local-path " + LOCAL_PATH +
                " --source-image " + SOURCE_IMAGE +
+               " --service-ref=\"openai=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:openai-claim\"" +
                " --namespace " + NAMESPACE +
                " --yes --output yaml",
     delete_cmd="tanzu apps workload delete -f config/workload.yaml --namespace " + NAMESPACE + " --yes",

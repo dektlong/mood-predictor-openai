@@ -27,11 +27,11 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-public class OpenaiApplication {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OpenaiApplication.class);
+public class OpenAiApplication {
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenAiApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(OpenaiApplication.class, args);
+        SpringApplication.run(OpenAiApplication.class, args);
     }
 
     @Autowired

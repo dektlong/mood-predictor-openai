@@ -22,7 +22,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-class OpenaiApplicationTests {
+class OpenAiApplicationTests {
     @Test
     void contextLoads() {
     }
