@@ -24,11 +24,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.time.Duration;
 import java.util.List;
 
 @Service
 public class DalleImageGeneratorService {
     private static final Logger LOGGER = LoggerFactory.getLogger(DalleImageGeneratorService.class);
+    public static final int TIMEOUT_SECONDS = 20;
     private final OpenAiConfiguration openai;
 
     public DalleImageGeneratorService(OpenAiConfiguration openai) {
@@ -40,7 +42,7 @@ public class DalleImageGeneratorService {
             throw new IllegalArgumentException("Prompt must not be empty");
         }
         LOGGER.info("Sending request to OpenAI: {}", prompt);
-        OpenAiService service = new OpenAiService(openai.key());
+        OpenAiService service = new OpenAiService(openai.key(), Duration.ofSeconds(TIMEOUT_SECONDS));
 
         CreateImageRequest createImageRequest = CreateImageRequest.builder()
                 .prompt(prompt)

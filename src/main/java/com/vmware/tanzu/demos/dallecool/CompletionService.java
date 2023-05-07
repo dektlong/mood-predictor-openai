@@ -24,11 +24,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.time.Duration;
 import java.util.List;
 
 @Service
 public class CompletionService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CompletionService.class);
+    public static final int TIMEOUT_SECONDS = 20;
     private final OpenAiConfiguration openai;
 
     public static final String COMPLETION_MODEL = "text-davinci-003";
@@ -42,13 +44,13 @@ public class CompletionService {
         if (!StringUtils.hasText(prompt)) {
             throw new IllegalArgumentException("Prompt must not be empty");
         }
-        OpenAiService service = new OpenAiService(openai.key());
+        OpenAiService service = new OpenAiService(openai.key(), Duration.ofSeconds(TIMEOUT_SECONDS));
 
         CompletionRequest completionRequest = CompletionRequest.builder()
                 .prompt(prompt)
                 .model(COMPLETION_MODEL)
                 .maxTokens(MAX_TOKENS)
-                .echo(true)
+                .echo(false)
                 .build();
         LOGGER.info("Sending request to OpenAI: {}", completionRequest);
 
