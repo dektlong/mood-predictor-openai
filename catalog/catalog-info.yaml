@@ -1,5 +1,5 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: Location
 metadata:
   name: mood-predictor-info
   description: A catalog for the mood-predictor openapi module
