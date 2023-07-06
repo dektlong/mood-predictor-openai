@@ -1,16 +1,62 @@
 accelerator:
   displayName: OpenAI Applications
-  description: A template for creating web or API-based applications that leverage OpenAI systems
+  description: A template for creating API-based applications that leverage OpenAI systems
   iconUrl: https://raw.githubusercontent.com/cpage-pivotal/dallecool/main/config/ai.png
   tags:
     - java
     - spring
-    - web
-    - tanzu
+    - clous-native-devs
     - openai
 
   imports:
     - name: tap-workload
+  options:
+
+  - name: model
+    label: OpenAI model
+    description: The model which will generate the completion. Some models are suitable for natural language tasks, others specialize in code
+    required: true
+    defaultValue: "davinci"
+    inputType: select
+    choices:
+      - value: davinci
+        text: text-davinci-003
+      - value: curie
+        text: text-curie-001
+      - value: babbage
+        text: text-babbage-001
+      - value: ada
+        text: text-ada-001
+
+  - name: probabilities
+    label: Add probabilities
+    description: Add response info which Indicates how likely a token was to be generated. Helps to debug a given generation, or see alternative options for a token.
+    required: true
+    defaultValue: "off"
+    inputType: select
+    choices:
+      - value: "off"
+        text: "Off"
+      - value: mostLikely
+        text: Most likely
+      - value: leastlikely
+        text: Least likely
+      - value: full
+        text: Full spectrum
+
+  - name: startText
+    label: Inject start text
+    description: Text to append after the user's input to format the model for a response.
+    inputType: checkbox
+    dataType: boolean
+    defaultValue: true
+
+  - name: restratText
+    label: Inject restart text
+    description: Text to append after the model's generation to continue the patterned structure.
+    inputType: checkbox
+    dataType: boolean
+    defaultValue: true
 
 engine:
   chain:
