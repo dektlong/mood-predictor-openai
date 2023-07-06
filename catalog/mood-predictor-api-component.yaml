@@ -9,4 +9,4 @@ spec:
   owner: dekt-dev-team2
   system: devx-mood
   definition:
-   $text: https://github.com/dektlong/mood-predictor-openai/blob/dev/backstage/apis/mood-predictor-api-definition.yaml
+   $text: https://github.com/dektlong/mood-predictor-openai/blob/main/catalog/mood-predictor-api-definition.yaml
