@@ -5,7 +5,7 @@ accelerator:
   tags:
     - java
     - spring
-    - clous-native-devs
+    - cloud-native-devs
     - openai
 
   imports:
