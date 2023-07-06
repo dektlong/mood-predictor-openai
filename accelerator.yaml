@@ -70,35 +70,35 @@ accelerator:
     dependsOn:
       name: advancedParams
     inputType: text
-    defaultValue: 0.0
+    defaultValue: "0.0"
   - name: topp
     label: Top P [0 to 1]
     description: Controls diversity via nucleus sampling. 0.5 means half of all likelihood-weighted options are considered.
     dependsOn:
       name: advancedParams
     inputType: text
-    defaultValue: 0.5
+    defaultValue: "0.5"
   - name: freqPenalty
     label: Frequency penalty [0 to 1]
     description: How much to penalize new tokens based on their existing frequency in the text so far. Decreases the model's likellhood to repeat the same line verbatim
     dependsOn:
       name: advancedParams
     inputType: text
-    defaultValue: 0.0
+    defaultValue: "0.0"
   - name: presPenalty
     label: Presence penalty [0 to 1]
     description: How much to penalize new tokens based on whether they appear in the text so far. Increases the model's likelihood to talk about new topics.
     dependsOn:
       name: advancedParams
     inputType: text
-    defaultValue: 0.0
+    defaultValue: "0.0"
   - name: bestof
     label: Best of [0 to 1]
     description: Generates multiple completions server-side, and displays only the best. Streaming only works when set to 1. Since it acts as a multiplier on the number of completions, this parameters can eat into your token quota very quickly - use caution!
     dependsOn:
       name: advancedParams
     inputType: text
-    defaultValue: 0.0
+    defaultValue: "0.0"
     
 
 engine:
