@@ -16,7 +16,7 @@ paths:
         schema:
           type: "array"
           items:
-            $ref: "#/definitions/Statement"
+            $ref: "#/components/schemas/Statement"
       responses:
         200:
           description: "The collective sentiment based on the provided statements"
