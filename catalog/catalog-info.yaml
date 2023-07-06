@@ -1,17 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: openai
-  description: OpenAI applications
-  tags:
-    - app-accelerator
-    - java
-    - spring
-    - web
-    - tanzu
+  name: mood-predictor-info
+  description: A catalog for the mood-predictor openapi module
   annotations:
     'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=openai'
 spec:
-  type: service
-  lifecycle: experimental
-  owner: default-team
+  targets: 
+    - mood-predictor-api-component.yaml
+    - mood-predictor.yaml

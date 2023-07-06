@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: mood-predictor-apis
+  description: APIs to interact with the mood-predictor component
+spec:
+  type: openapi
+  lifecycle: development
+  owner: dekt-dev-team2
+  system: devx-mood
+  definition:
+   $text: https://github.com/dektlong/mood-predictor-openai/blob/dev/backstage/apis/mood-predictor-api-definition.yaml

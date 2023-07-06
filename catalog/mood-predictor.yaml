@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: mood-predictor
+  description: OpenAPI module to predict social sentiments
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=mood-predictor'
+spec:
+  type: service
+  lifecycle: integration
+  owner: dekt-dev-team2
+  system: devx-mood
+  dependsOn: 
+    - resource:openapi-binder
+    - resource:reading
+  providesApis:
+    - mood-predictor-apis
