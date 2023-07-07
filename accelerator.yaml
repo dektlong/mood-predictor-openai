@@ -1,6 +1,6 @@
 accelerator:
-  displayName: OpenAI Applications
-  description: A template for creating API-based applications that leverage OpenAI systems
+  displayName: LLM API Client with Spring Boot
+  description: A template for creating API-based LLM application using Spring Boot 3
   iconUrl: https://raw.githubusercontent.com/cpage-pivotal/dallecool/main/config/ai.png
   tags:
     - java
@@ -13,7 +13,7 @@ accelerator:
   options:
 
   - name: model
-    label: OpenAI model
+    label: Model
     description: The model which will generate the completion. Some models are suitable for natural language tasks, others specialize in code
     required: true
     defaultValue: "davinci"
