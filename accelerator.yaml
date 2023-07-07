@@ -25,8 +25,8 @@ accelerator:
         text: text-curie-001
       - value: babbage
         text: text-babbage-001
-      - value: ada
-        text: text-ada-001
+      - value: private
+        text: private-trained-model
 
   - name: probabilities
     label: Add probabilities
@@ -60,6 +60,7 @@ accelerator:
 
   - name: advancedParams
     label: Advanced openai parameters 
+    description: Use caution modifying defaults! can effect perfomance and costs.
     inputType: checkbox
     display: true
     dataType: boolean
