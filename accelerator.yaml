@@ -13,10 +13,28 @@ accelerator:
   options:
 
   - name: model
-    label: Model
-    description: The model which will generate the completion. Some models are suitable for natural language tasks, others specialize in code
+    label: Model Catalog
+    description: The model catalog which are suitable for natural language tasks, others specialize in code
     required: true
-    defaultValue: "davinci"
+    defaultValue: "hugginface"
+    inputType: select
+    choices:
+      - value: hugginface
+        text: Hugging Face
+      - value: meta
+        text: Meta 
+      - value: deci
+        text: Deci 
+      - value: openassist
+        text: Open Assist 
+      - value: bigscience
+        text: Big Science 
+
+  - name: llm
+    label: LLM
+    description: The LLM trained data set which will generate the completion. Some models are suitable for natural language tasks, others specialize in code
+    required: true
+    defaultValue: "ilama"
     inputType: select
     choices:
       - value: davinci
@@ -27,6 +45,10 @@ accelerator:
         text: xgen-7b-8k-base
       - value: bert-private
         text: bert-large-pretrained
+      - value: stanford_alpaca  
+        text: Stanford Alpaca
+      - value: openchat
+        text: GPT-NeoXT-Chat-Base-20B
 
   - name: vectordb
     label: Vector Database
