@@ -63,25 +63,55 @@ accelerator:
         text: Greenplum
       - value: redis
         text: Redis
+      - value: qdrant
+        text: qdrant
+      - value: elastic
+        text: elastic
+      - value: pinecone
+        text: Pinecone
 
-  - name: java
+  - name: frameworks
+    label: Frameworks
+    inputType: checkbox
+    display: true
+    dataType: boolean
+    defaultValue: false
+  - name: langchain-java
     label: Langchain (Java) 
-    description: Add boiler plate code for use of Java in this LLM module
     inputType: checkbox
     dataType: boolean
-    defaultValue: true
-
+    dependsOn:
+      name: frameworks
+    defaultValue: false
+  - name: langchain-python
+    label: Langchain (Python)
+    inputType: checkbox
+    dataType: boolean
+    dependsOn:
+      name: frameworks
+    defaultValue: false
   - name: python
     label: LIamaIndex (Python)
     description: Add boiler plate code for use of Python in this LLM module
     inputType: checkbox
     dataType: boolean
-    defaultValue: true
+        dependsOn:
+      name: frameworks
+    defaultValue: false
 
+
+  - name: advancedParams
+    label: Advanced openai parameters 
+    description: Use caution modifying defaults! can effect perfomance and costs.
+    inputType: checkbox
+    display: true
+    dataType: boolean
+    defaultValue: false
   - name: probabilities
     label: Add probabilities
     description: Add response info which Indicates how likely a token was to be generated. Helps to debug a given generation, or see alternative options for a token.
-    required: true
+    dependsOn:
+      name: advancedParams
     defaultValue: "off"
     inputType: select
     choices:
@@ -93,14 +123,6 @@ accelerator:
         text: Least likely
       - value: full
         text: Full spectrum
-
-  - name: advancedParams
-    label: Advanced openai parameters 
-    description: Use caution modifying defaults! can effect perfomance and costs.
-    inputType: checkbox
-    display: true
-    dataType: boolean
-    defaultValue: false
   - name: temp
     label: Temperature [0 to 2]
     description: Controls randomness. Lowering results in less random completions. As the temperature approaches zero, the model will become deterministic and repetitive.
