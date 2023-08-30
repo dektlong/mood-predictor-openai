@@ -67,7 +67,7 @@ accelerator:
         text: Pinecone
 
   - name: frameworks
-    label: Frameworks
+    label: Development Frameworks
     inputType: checkbox
     display: true
     dataType: boolean
