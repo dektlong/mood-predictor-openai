@@ -96,7 +96,7 @@ accelerator:
     defaultValue: false
 
   - name: advancedParams
-    label: Advanced openai parameters 
+    label: Advanced parameters 
     description: Use caution modifying defaults! can effect perfomance and costs.
     inputType: checkbox
     display: true
