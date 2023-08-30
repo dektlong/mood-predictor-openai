@@ -95,10 +95,9 @@ accelerator:
     description: Add boiler plate code for use of Python in this LLM module
     inputType: checkbox
     dataType: boolean
-        dependsOn:
+    dependsOn:
       name: frameworks
     defaultValue: false
-
 
   - name: advancedParams
     label: Advanced openai parameters 
