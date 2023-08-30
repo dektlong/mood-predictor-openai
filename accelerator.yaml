@@ -1,12 +1,14 @@
 accelerator:
   displayName: LLM API Client
-  description: A template for creating API-based LLM application using Spring Boot 3
+  description: A template for creating API-based LLM application
   iconUrl: https://raw.githubusercontent.com/cpage-pivotal/dallecool/main/config/ai.png
   tags:
     - java
     - spring
     - cloud-native-devs
     - openai
+    - llm
+    - phyton
 
   imports:
     - name: tap-workload
