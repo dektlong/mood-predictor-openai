@@ -54,19 +54,15 @@ accelerator:
     label: Vector Database
     description: Select a claim to a vector database
     required: true
-    defaultValue: "none"
+    defaultValue: "greenplum"
     inputType: select
     choices:
-      - value: "none"
-        text: "None"
       - value: greenplum
         text: Greenplum
       - value: redis
         text: Redis
       - value: qdrant
-        text: qdrant
-      - value: elastic
-        text: elastic
+        text: Qdrant
       - value: pinecone
         text: Pinecone
 
