@@ -16,7 +16,6 @@ accelerator:
 
   - name: llm
     label: LLM
-    description: The LLM trained data set which will generate the completion. Some models are suitable for natural language tasks, others specialize in code
     required: true
     defaultValue: "llama2"
     inputType: select
@@ -37,9 +36,9 @@ accelerator:
       - value: ai-tile
         text: TAS AI Tile (w/ postgres pgvector & rabbitmq)
       - value: greenplum
-        text: Greenplum
-      - value: k8s
-        text: Vanilla k8s
+        text: Greenplum & Vanilla k8s
+      - value: TAP with AI supply chain
+        text: tap
 
   - name: frameworks
     label: Development Frameworks
