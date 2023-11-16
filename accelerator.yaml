@@ -14,24 +14,6 @@ accelerator:
     - name: tap-workload
   options:
 
-  - name: model
-    label: Model Catalog
-    description: The model catalog which are suitable for natural language tasks, others specialize in code
-    required: true
-    defaultValue: "hugginface"
-    inputType: select
-    choices:
-      - value: hugginface
-        text: Hugging Face
-      - value: meta
-        text: Meta 
-      - value: deci
-        text: Deci 
-      - value: openassist
-        text: Open Assist 
-      - value: bigscience
-        text: Big Science 
-
   - name: llm
     label: LLM
     description: The LLM trained data set which will generate the completion. Some models are suitable for natural language tasks, others specialize in code
@@ -102,15 +84,8 @@ accelerator:
     display: true
     dataType: boolean
     defaultValue: false
-  - name: training-modules
-    label: Training models
-    inputType: checkbox
-    dataType: boolean
-    dependsOn:
-      name: gpu
-    defaultValue: false
-  - name: openai
-    label: Open AI endpoint
+  - name: training
+    label: Training modules
     inputType: checkbox
     dataType: boolean
     dependsOn:
