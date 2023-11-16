@@ -41,7 +41,6 @@ accelerator:
       - value: k8s
         text: Vanilla k8s
 
-
   - name: frameworks
     label: Development Frameworks
     inputType: checkbox
@@ -63,8 +62,7 @@ accelerator:
       name: frameworks
     defaultValue: false
   - name: python
-    label: LIamaIndex (Python)
-    description: Add boiler plate code for use of Python in this LLM module
+    label: LIamaIndex
     inputType: checkbox
     dataType: boolean
     dependsOn:
