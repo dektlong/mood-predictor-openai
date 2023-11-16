@@ -55,7 +55,7 @@ accelerator:
       name: frameworks
     defaultValue: false
 
-   - name: runtime
+  - name: runtime
     label: Deployment Runtime 
     required: true
     defaultValue: "ai-tile"
@@ -67,7 +67,7 @@ accelerator:
         text: Greenplum & Vanilla k8s
       - value: tap
         text: TAP with workers supply chain
-        
+
   - name: gpu
     label: GPU support
     inputType: checkbox
