@@ -36,35 +36,28 @@ accelerator:
     label: LLM
     description: The LLM trained data set which will generate the completion. Some models are suitable for natural language tasks, others specialize in code
     required: true
-    defaultValue: "ilama"
+    defaultValue: "llama2"
     inputType: select
     choices:
-      - value: davinci
-        text: text-davinci-003
-      - value: ilama
-        text: open-ilama-7b-v2-open-instruct
-      - value: xgen
-        text: xgen-7b-8k-base
-      - value: bert-private
-        text: bert-large-pretrained
-      - value: stanford_alpaca  
-        text: Stanford Alpaca
-      - value: openchat
-        text: GPT-NeoXT-Chat-Base-20B
+      - value: starcoder
+        text: StarCoder
+      - value: llama2
+        text: LLaMA 2
+      - value: gpt2
+        text: GPT-4
 
-  - name: vectordb
-    label: Vector Database
-    description: Select a claim to a vector database
+  - name: runtime
+    label: Deployment Runtime 
     required: true
-    defaultValue: "greenplum"
+    defaultValue: "ai-tile"
     inputType: select
     choices:
-      - value: greenplum
-        text: Greenplum
+      - value: ai-tile
+        text: TAS AI Tile (w/ postgres pgvector & rabbitmq)
       - value: redis
         text: Redis
-      - value: qdrant
-        text: Qdrant
+      - value: greenplum
+        text: Greenplum
       - value: pinecone
         text: Pinecone
 
@@ -74,6 +67,13 @@ accelerator:
     display: true
     dataType: boolean
     defaultValue: false
+  - name: spring-ai
+    label: Spring AI
+    inputType: checkbox
+    dataType: boolean
+    dependsOn:
+      name: frameworks
+    defaultValue: true
   - name: langchain-java
     label: Langchain (Java) 
     inputType: checkbox
