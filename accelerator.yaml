@@ -54,16 +54,9 @@ accelerator:
     dataType: boolean
     dependsOn:
       name: frameworks
-    defaultValue: true
-  - name: langchain-java
-    label: Langchain (Java) 
-    inputType: checkbox
-    dataType: boolean
-    dependsOn:
-      name: frameworks
     defaultValue: false
-  - name: langchain-python
-    label: Langchain (Python)
+  - name: langchain
+    label: Langchain
     inputType: checkbox
     dataType: boolean
     dependsOn:
@@ -83,6 +76,13 @@ accelerator:
     inputType: checkbox
     display: true
     dataType: boolean
+    defaultValue: false
+  - name: llm
+    label: LLM Worker VMs
+    inputType: checkbox
+    dataType: boolean
+    dependsOn:
+      name: gpu
     defaultValue: false
   - name: training
     label: Training modules
