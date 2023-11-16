@@ -97,9 +97,9 @@ accelerator:
     defaultValue: false
 
   - name: Embeddings 
-    label: Embeddings training policy
+    label: Embeddings frequency 
     required: true
-    defaultValue: "realtime"
+    defaultValue: "immediate"
     inputType: select
     choices:
       - value: immediate
