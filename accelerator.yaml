@@ -96,6 +96,34 @@ accelerator:
       name: frameworks
     defaultValue: false
 
+  - name: gpu
+    label: GPU support
+    inputType: checkbox
+    display: true
+    dataType: boolean
+    defaultValue: false
+  - name: training-modules
+    label: Training models
+    inputType: checkbox
+    dataType: boolean
+    dependsOn:
+      name: gpu
+    defaultValue: false
+  - name: openai
+    label: Open AI endpoint
+    inputType: checkbox
+    dataType: boolean
+    dependsOn:
+      name: gpu
+    defaultValue: false
+  - name: openai
+    label: Open AI endpoint
+    inputType: checkbox
+    dataType: boolean
+    dependsOn:
+      name: gpu
+    defaultValue: false
+
   - name: advancedParams
     label: Advanced parameters 
     description: Use caution modifying defaults! can effect perfomance and costs.
