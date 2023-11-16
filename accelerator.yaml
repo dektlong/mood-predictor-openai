@@ -34,7 +34,7 @@ accelerator:
     inputType: select
     choices:
       - value: ai-tile
-        text: TAS AI Tile (w/ postgres pgvector & rabbitmq)
+        text: TAS AI Tile
       - value: greenplum
         text: Greenplum & Vanilla k8s
       - value: TAP with AI supply chain
@@ -74,7 +74,7 @@ accelerator:
     display: true
     dataType: boolean
     defaultValue: false
-  - name: llm
+  - name: llmworker
     label: LLM Worker VMs
     inputType: checkbox
     dataType: boolean
