@@ -96,6 +96,19 @@ accelerator:
       name: gpu
     defaultValue: false
 
+  - name: Embeddings 
+    label: Embeddings training policy
+    required: true
+    defaultValue: "realtime"
+    inputType: select
+    choices:
+      - value: immediate
+        text: Immediate
+      - value: daily
+        text: Daily
+      - value: weekly
+        text: Weekly
+
   - name: advancedParams
     label: Advanced parameters 
     description: Use caution modifying defaults! can effect perfomance and costs.
