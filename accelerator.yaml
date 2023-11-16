@@ -54,12 +54,11 @@ accelerator:
     choices:
       - value: ai-tile
         text: TAS AI Tile (w/ postgres pgvector & rabbitmq)
-      - value: redis
-        text: Redis
       - value: greenplum
         text: Greenplum
-      - value: pinecone
-        text: Pinecone
+      - value: k8s
+        text: Vanilla k8s
+
 
   - name: frameworks
     label: Development Frameworks
