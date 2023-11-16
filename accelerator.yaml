@@ -20,17 +20,17 @@ accelerator:
     defaultValue: "llama2"
     inputType: select
     choices:
-      - value: starcoder
-        text: StarCoder
       - value: llama2
         text: LLaMA 2
+      - value: starcoder
+        text: StarCoder
       - value: gpt2
         text: GPT-4
 
   - name: framworks
     label: Development Frameworks
     required: true
-    defaultValue: "llama2"
+    defaultValue: "spring-ai"
     inputType: select
     choices:
       - value: spring-ai
